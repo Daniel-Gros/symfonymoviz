@@ -50,7 +50,7 @@ class AppCustonAuthentificatorAuthenticator extends AbstractLoginFormAuthenticat
         } elseif ($targetPath = $request->getsession()->get('previous_url')) {
             return new RedirectResponse($targetPath);
         } else {
-            return new RedirectResponse('/home');
+            return new RedirectResponse('/');
         }
 
         // For example:

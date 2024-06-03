@@ -22,7 +22,8 @@ class MovieController extends AbstractController
     public function index(MovieRepository $movieRepository, Request $request): Response
     {
         $genreId = $request->get('genreId');
-        $movies = $movieRepository->findMovies($genreId);
+        $directorId = $request->get('directorId');
+        $movies = $movieRepository->findMovies($genreId, $directorId);
 
         return $this->render('movie/index.html.twig', [
             'movies' => $movies,
@@ -58,8 +59,9 @@ class MovieController extends AbstractController
         [
             'movie' => $movie,
             'form' => $form,
-            'user' => $user,
+            'user' => $review ? $review->getUser() : null,
             'averageRate' => $averageRate,
+            'review' => $review,
         ]);
     }
 }

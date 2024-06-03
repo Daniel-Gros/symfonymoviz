@@ -35,33 +35,38 @@
 		<div class="col">
 			{% for director in movie.directors %}
 				Réalisateur :
-				<a href="{{ path('app_movies', {'directorId': director.id}) }}">{{director.firstName}}{{director.lastName}}</a>
+				<a href="{{ path('app_movies', {'directorId': director.id}) }}">{{director.firstName}} {{director.lastName}}</a>
 			{% endfor %}
 		</div>
 	</div>
-        <div class="row">
-            <div class="col">
-            {% if averageRate %}
-                Note moyenne :
-                {% for i in range (5,1, -1) %}
-                <input disabled="disabled" type="radio" id="avgrate" value="{{ i }}" {{ averageRate == i ? 'checked="checked"' : '' }}>
-                {% endfor %}
-            {% else %}
-                <p>Il n'y a pas encore de note</p>
-            {% endif %}
-            </div>
-        </div>
+	<div class="row">
+		<div class="col">
+			{% if averageRate %}
+				Note moyenne :
+				{% for i in range (5,1, -1) %}
+					<input disabled="disabled" type="radio" id="avgrate" value="{{ i }}" {{ averageRate == i ? 'checked="checked"' : '' }}>
+				{% endfor %}
+			{% else %}
+				<p>Il n'y a pas encore de note</p>
+			{% endif %}
+		</div>
+	</div>
 
 	<div class="row">
-		<div class="col-lg-8">
-			<p class="lead">{{movie.synopsis}}</p>
-		</div>
 		<div class="col-lg-4">
 			{% if movie.imageName %}
-				<img src="{{ vich_uploader_asset(movie, 'imageFile') }}" class="card-img-top" alt="affiche du film {{ movie.name }}" style="width: 100%; height: 25vh;">
+				<img src="{{ vich_uploader_asset(movie, 'imageFile') }}" class="card-img-top rounded-float-right" alt="affiche du film {{ movie.name }}" style="width: 80%; height: auto;">
 			{% else %}
-				<img src="{{ asset('build/images/default-movie.png') }}" class="card-img-top" alt="affiche du film non disponible" style="width: 100%; height: 25vh;">
+				<img src="{{ asset('build/images/default-movie.png') }}" class="card-img-top" alt="affiche du film non disponible" style="width: 80%; height: auto;">
 			{% endif %}
+		</div>
+		<div class="col-lg-8">
+			<p class="lead">{{movie.synopsis}}</p>
+			<br>
+			<h2>Les Critiques</h2>
+			{% for review in movie.reviews %}
+				{{ include('partials/review/_reviewblock.html.twig')}}
+			{% endfor %}
 		</div>
 	</div>
 </div>
@@ -74,5 +79,4 @@
 			<a href="{{ path('app_login')}}">connexion</a>
 		</p>
 	{% endif %}
-</div>
-{% endblock %}
+</div>{% endblock %}

@@ -10,7 +10,7 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class PageController extends AbstractController
 {
-    #[Route('/home', name: 'app_home')]
+    #[Route('/', name: 'app_home')]
     public function index(MovieRepository $movieRepository, ParameterBagInterface $parameterBagInterface): Response
     {
         $limit = $parameterBagInterface->get('home_movies_limit');

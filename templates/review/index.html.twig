@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Critiques des utilisateurs{% endblock %}
+
+{% block body %}
+	<div class="row text-center">
+		{% for review in reviews %}
+			{% include "partials/review/_reviewblock.html.twig" %}
+		{% endfor %}
+	</div>
+{% endblock %}

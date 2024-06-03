@@ -24,17 +24,17 @@ class ReviewRepository extends ServiceEntityRepository
     //    /**
     //     * @return Review[] Returns an array of Review objects
     //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('r')
-    //            ->andWhere('r.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('r.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    public function findByMovieAndUser($movieId, $userId)
+    {
+        return $this->createQueryBuilder('m')
+            ->andWhere('m.movie = :movie')
+            ->andWhere('m.user = :user')
+            ->setParameter('movie', $movieId)
+            ->setParameter('user', $userId)
+            ->orderBy('m.id', 'DESC')
+            ->getQuery()
+            ->getResult();
+    }
 
     //    public function findOneBySomeField($value): ?Review
     //    {

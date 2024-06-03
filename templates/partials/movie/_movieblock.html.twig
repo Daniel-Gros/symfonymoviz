@@ -1,13 +1,13 @@
 <div class="col-md-4 my-2 d-flex">
-	<div class="card" style="width: 18rem;">
+	<div class="card justify-content-center align-items-center" style="width: 18rem;">
     {% if movie.imageName %}
-		<img src="{{vich_uploader_asset(movie, 'imageFile') }}" class="card-img-top" alt="affiche du film {{ movie.name}}" style="width: 100%; height: 20vh;">
+		<img src="{{vich_uploader_asset(movie, 'imageFile') }}" class="card-img-top" alt="affiche du film {{ movie.name}}" style="width: 100%; height: 100%; object-fit: cover;">
     {% else %}
-        <img src="{{ asset('build/images/default-movie.png') }}" class="card-img-top" alt="affiche du film non disponible" style="width: 100%; height: 20vh;">
+        <img src="{{ asset('build/images/default-movie.png') }}" class="card-img-top" alt="affiche du film non disponible" style="width: 100%; height: 100%; object-fit: cover;">
     {% endif %}
 		<div class="card-body">
 			<h5 class="card-title">{{ movie.name }}</h5>
 			<a href="{{ path('app_movie_show', {'id' : movie.id} )}}" class="btn btn-primary">Voir la fiche</a>
 		</div>
 	</div>
-</div>
+</div>  
